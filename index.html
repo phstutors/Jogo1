@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Chronos – A Fronteira Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500;700&family=Baloo+2:wght@500;700&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#070716;--pn:rgba(12,14,44,.86);--c:#22d3ee;--p:#a78bfa;--m:#f0abfc;--t:#e8ecff;--d:#8b93c9;--bad:#fb7185;--ok:#4ade80;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:radial-gradient(ellipse at 75% 15%,#3a1f8f 0,transparent 55%),radial-gradient(ellipse at 10% 95%,#0b5a7e 0,transparent 50%),#0b0a2a;color:var(--t);font:500 clamp(15px,1.5vw,19px)/1.45 'Baloo 2',Rajdhani,system-ui,sans-serif;overflow:hidden}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+#cv{position:fixed;inset:0;width:100%;height:100%}
+.scr{position:fixed;inset:0;display:none;flex-direction:column;pointer-events:none;padding:7vh 3vw 3vh}
+.scr *{pointer-events:auto}.scr.on{display:flex;animation:in .5s}
+@keyframes in{from{opacity:0;filter:blur(6px)}}
+h1,h2,h3{font-family:Orbitron,sans-serif;letter-spacing:.06em;margin:.3em 0}
+h1{font-size:clamp(40px,9vw,120px);font-weight:800;background:linear-gradient(90deg,var(--c),var(--p),var(--m));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px #22d3ee55}
+h2{font-size:clamp(18px,2.4vw,30px)}h3{font-size:clamp(14px,1.5vw,19px);color:var(--c)}
+.pn{background:var(--pn);border:1px solid #3b4aa8;border-radius:10px;padding:14px 18px;box-shadow:0 0 24px #22d3ee22;backdrop-filter:blur(6px)}
+.ctr{align-items:center;justify-content:center;text-align:center}.rt{align-items:flex-end}.bt{justify-content:flex-end}
+.b{font:700 1em Rajdhani,sans-serif;color:var(--t);background:#1b2060;border:1px solid var(--c);border-radius:6px;padding:8px 16px;margin:4px;cursor:pointer;transition:.15s}
+.b:hover:not(:disabled){background:var(--c);color:#04101c;box-shadow:0 0 18px var(--c)}.b:disabled{opacity:.4;cursor:not-allowed;border-color:#555}
+.b.sel{background:var(--p);color:#10082a;border-color:var(--p)}.b.big{font-size:1.4em;padding:12px 34px;border-width:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;max-width:1000px;margin:auto}
+.card{text-align:center;padding:22px 10px}.card small{display:block;color:var(--d)}
+#hud{position:fixed;top:max(1.2vh,env(safe-area-inset-top,0px));left:3vw;right:9vw;display:none;gap:14px;align-items:center;padding:6px 14px;pointer-events:none}
+.bar{display:inline-block;width:140px;height:10px;background:#0a0c2a;border:1px solid #3b4aa8;border-radius:6px;overflow:hidden;vertical-align:middle}.bar b{display:block;height:100%;background:linear-gradient(90deg,var(--c),var(--p));transition:width .4s}
+.bar.e b{background:linear-gradient(90deg,var(--m),var(--bad))}.bar.h b{background:linear-gradient(90deg,var(--ok),var(--c))}
+#mu{position:fixed;top:max(1.2vh,env(safe-area-inset-top,0px));right:2vw;z-index:9}
+#toast{position:fixed;bottom:4vh;left:50%;transform:translateX(-50%);background:var(--p);color:#10082a;padding:8px 18px;border-radius:6px;display:none;z-index:9;font-weight:700}
+.row{display:flex;flex-wrap:wrap}.g{color:var(--ok)}.r{color:var(--bad)}.dim{color:var(--d)}
+.sw{width:30px;height:30px;padding:0;border-radius:50%}
+input{font:inherit;background:#0a0c2a;color:var(--t);border:1px solid var(--c);border-radius:6px;padding:6px 10px}
+.ans button{display:block;width:100%;text-align:left}.ans .ok{background:var(--ok);color:#04140a}.ans .no{background:var(--bad);color:#2a0610}
+.msg{max-height:34vh;overflow:auto}.w60{width:min(640px,94vw)}.w40{width:min(440px,94vw)}.mid{margin:auto}
+:focus-visible{outline:2px solid var(--m);outline-offset:2px}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pn{border-radius:22px;border:2px solid transparent;background:linear-gradient(var(--pn),var(--pn)) padding-box,linear-gradient(135deg,#22d3ee,#a78bfa,#f0abfc) border-box;box-shadow:0 10px 40px #0008,0 0 30px #a78bfa33}
+.b{font-family:'Baloo 2',Rajdhani,sans-serif;font-weight:700;border:0;border-radius:16px;background:linear-gradient(180deg,#6d7bff,#3a2fd0);box-shadow:0 4px 0 #1a1470,0 8px 16px #0006;padding:8px 20px;text-shadow:0 1px 0 #0006}
+.b:hover:not(:disabled){background:linear-gradient(180deg,#67e8f9,#22d3ee);color:#04101c;transform:translateY(-2px);box-shadow:0 6px 0 #0e7490,0 10px 20px #22d3ee55;text-shadow:none}
+.b:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #1a1470}
+.b.sel{background:linear-gradient(180deg,#f0abfc,#c084fc);color:#2a0a40;box-shadow:0 4px 0 #7e22ce;text-shadow:none}
+.b.big{font-size:1.5em;padding:12px 38px;background:linear-gradient(180deg,#fcd34d,#f59e0b);color:#3b2000;box-shadow:0 5px 0 #b45309,0 0 28px #fbbf2466;text-shadow:none}
+.b.big:hover:not(:disabled){background:linear-gradient(180deg,#fde68a,#fbbf24);color:#3b2000;box-shadow:0 7px 0 #b45309,0 0 36px #fbbf24aa}
+.b.sw{box-shadow:0 0 0 3px #fff3,0 3px 0 #0006}.b.sel.sw{box-shadow:0 0 0 3px #fff}.b:disabled{box-shadow:none;background:#2a2d5e}
+h1{animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}
+#t.ctr{align-items:flex-start;text-align:left;padding-left:7vw}#t .dim{max-width:520px;font-size:1.1em}
+.card{transition:.2s}.b.card:hover:not(:disabled){transform:translateY(-6px) scale(1.04)}
+.orb{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#67e8f9 30%,#7c3aed 75%);box-shadow:0 0 22px #22d3ee,inset 0 0 12px #fff8;animation:fl 2.5s ease-in-out infinite;flex:none}
+.chp{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:800 1.2em Orbitron,sans-serif;color:#0a0a24;flex:none}.cf{position:fixed;top:-20px;width:10px;height:16px;z-index:20;pointer-events:none;animation:cf 3s linear forwards}@keyframes cf{to{top:105vh;margin-left:60px}}.stars{font-size:3em;color:#fbbf24;text-shadow:0 0 20px #fbbf24;animation:pop .6s cubic-bezier(.3,1.8,.5,1)}@keyframes pop{from{transform:scale(0)}}.bar{height:14px;border-radius:10px}.bar b{border-radius:10px}.ans button{margin:6px 0;font-size:1.05em}
+</style></head><body>
+<canvas id="cv"></canvas><div id="hud" class="pn"></div><button id="mu" class="b">Som: ligado</button><div id="toast"></div>
+
+<section id="t" class="scr on ctr"><h1>CHRONOS</h1><h2>A Fronteira Digital</h2><p class="dim w60">A Chronosfera guarda toda a história humana. O malware Oblívio está apagando os registros. Só o conhecimento pode restaurá-los.</p>
+<div><button class="b big" id="go">Iniciar jornada</button><button class="b big" id="cont" style="display:none">Continuar</button></div></section>
+
+<section id="sub" class="scr"><h2>Escolha a disciplina</h2><div class="grid" id="dg"></div><div><button class="b" data-go="t">Voltar</button></div></section>
+<section id="yr" class="scr"><h2>Escolha o ano escolar</h2><div class="grid" id="yg"></div><p class="dim mid">Cada ano recebe missões próprias, alinhadas à BNCC. Os demais anos serão liberados conforme o conteúdo for revisado.</p><div><button class="b" data-go="sub">Voltar</button></div></section>
+<section id="ch" class="scr rt"><div class="pn w40" style="max-height:82vh;overflow:auto"><h2>Crie seu Crononauta</h2><div id="opts"></div><h3>Nome</h3><input id="nm" maxlength="14" placeholder="Seu nome de Crononauta"><div style="margin-top:10px"><button class="b big" id="ok">Confirmar</button></div></div></section>
+<section id="ci" class="scr rt bt"><div class="pn w40"><div class="row" style="align-items:center;gap:10px"><div class="orb"></div><h3>Clio-7</h3></div><p id="cl"></p><button class="b" id="cn">Continuar</button></div></section>
+
+<section id="lb" class="scr rt"><div class="pn w40"><h2>Lobby da Chronosfera</h2><p class="dim">Setor ativo: Tempo e Fontes. O Oblívio avança. Escolha o próximo passo.</p>
+<button class="b big" data-go="mp">Mapa de setores</button><button class="b" data-go="ch">Personalizar</button><button class="b" data-go="pr">Perfil e conquistas</button><button class="b" data-go="fr">Amigos</button>
+<h3>Modos de jogo</h3><button class="b sel">Solo: Explorador</button><button class="b" disabled>Duo: em breve</button><button class="b" disabled>Squad: em breve</button></div></section>
+<section id="mp" class="scr"><h2>Mapa de setores · História · <span id="yl"></span></h2><div class="grid" id="sec"></div><div><button class="b" data-go="lb">Lobby</button></div></section>
+<section id="mis" class="scr bt"></section>
+<section id="fr" class="scr rt"><div class="pn w40" style="max-height:82vh;overflow:auto"><h2>Amigos</h2><div id="fl"></div><div><button class="b" data-go="lb">Voltar</button></div></div></section>
+<section id="ep" class="scr rt"><div class="pn w40" style="max-height:82vh;overflow:auto"><h2>Editar perfil</h2><h3>Nome</h3><input id="en2" maxlength="14"><h3>Frase do perfil</h3><input id="bi" maxlength="60" style="width:100%;box-sizing:border-box" placeholder="Ex.: Amo a Antiguidade!"><h3>Cor do banner</h3><div class="row" id="bc"></div><h3>Título</h3><div class="row" id="tt"></div><div style="margin-top:10px"><button class="b big" id="sp">Salvar</button><button class="b" data-go="pr">Cancelar</button></div></div></section>
+<section id="pr" class="scr rt"><div class="pn w40" style="max-height:82vh;overflow:auto"><h2 id="pn"></h2><p id="ps"></p><button class="b" data-go="ep">Editar perfil</button><button class="b" data-go="fr">Amigos</button><h3>Conquistas</h3><div id="ac"></div><h3>Histórico</h3><div id="hs"></div><h3>Configurações</h3><button class="b" id="mu2">Alternar som</button><button class="b" id="rs">Apagar progresso</button><div><button class="b" data-go="lb">Voltar</button></div></div></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ===== DADOS (camada de conteúdo separada da engine; novos anos/disciplinas entram aqui) ===== */
+const UT="História: tempo, espaço e formas de registro";
+const D={
+ disc:[["História",1],["Geografia",0],["Matemática",0],["Língua Portuguesa",0],["Ciências",0],["Pensamento Computacional",0]],
+ years:[[6,1],[7,0],[8,0],[9,0]],
+ future:{6:["Setor 2 · Mesopotâmia e Egito","Setor 3 · Grécia Antiga","Setor 4 · Roma Antiga"]},
+ h:{6:{name:"Setor 1 · Tempo e Fontes",m:[
+ {id:"h6m1",n:"Os Relógios do Tempo",dif:"Fácil",u:UT,o:"A questão do tempo, sincronias e diacronias: reflexões sobre o sentido das cronologias",h:"EF06HI01",hd:"Identificar diferentes formas de compreensão da noção de tempo e de periodização dos processos históricos.",
+  ctx:"Historiadores organizam o passado em séculos, milênios e períodos. O século I vai do ano 1 ao 100, e assim por diante. Antes do ano 1 a contagem é regressiva (a.C.). O Oblívio embaralhou as datas dos terminais.",
+  ev:["Papiro com datas em a.C.: antes de Cristo, a contagem corre de trás para frente.","Calendário corrompido: cada povo criou formas próprias de medir o tempo.","Régua do tempo: um século equivale a 100 anos."],
+  q:[{t:"m",q:"O ano de 1950 pertence a qual século?",o:["Século XIX","Século XX","Século XXI","Século XVIII"],a:1,w:"Os séculos contam de 100 em 100 anos: o século XX vai de 1901 a 2000. Por isso 1950 está no século XX."},
+  {t:"m",q:"O Glitch afirma: “O ano 100 a.C. aconteceu depois do ano 50 a.C.” Isso é:",o:["Verdadeiro","Falso"],a:1,w:"Antes de Cristo a contagem é regressiva: quanto maior o número, mais antigo. 100 a.C. veio antes de 50 a.C."},
+  {t:"o",q:"Restaure a linha do tempo: clique do mais antigo ao mais recente.",i:["300 a.C.","10 a.C.","50 d.C.","1500 d.C."],w:"Em a.C. os números maiores são mais antigos (300 a.C. vem antes de 10 a.C.). Depois vêm os anos d.C. em ordem crescente."},
+  {t:"m",q:"Dividir a História em períodos (Antiguidade, Idade Média…) serve para:",o:["Organizar o estudo do passado em grandes blocos de tempo","Provar que o passado nunca muda","Eliminar as continuidades históricas","Dizer que todos os povos viveram as mesmas fases ao mesmo tempo"],a:0,w:"A periodização é uma convenção criada por historiadores para organizar o estudo. Ela convive com continuidades e rupturas, e nem todos os povos seguiram as mesmas fases."}]},
+ {id:"h6m2",n:"O Arquivo das Fontes",dif:"Média",u:UT,o:"Formas de registro da história e da produção do conhecimento histórico",h:"EF06HI02",hd:"Identificar a gênese da produção do saber histórico e analisar o significado das fontes que originaram determinadas formas de registro em sociedades e épocas distintas.",
+  ctx:"Fontes históricas são os vestígios que permitem conhecer o passado: textos, objetos, imagens, sons e relatos orais. O Oblívio trocou as etiquetas do Arquivo e misturou os tipos de fonte.",
+  ev:["Vaso de cerâmica rachado: fonte material.","Gravação de uma anciã contando histórias: fonte oral.","Pintura rupestre: fonte imagética e material."],
+  q:[{t:"m",q:"Uma ponta de flecha encontrada em uma escavação é que tipo de fonte?",o:["Fonte material","Fonte oral","Fonte audiovisual","Não é fonte"],a:0,w:"Objetos e vestígios deixados por pessoas do passado são fontes materiais, estudadas por arqueólogos e historiadores."},
+  {t:"m",q:"A lembrança contada por uma pessoa idosa sobre a história do bairro é uma fonte:",o:["Oral","Material","Cartográfica","Sem valor histórico"],a:0,w:"Relatos transmitidos pela fala são fontes orais. Têm valor histórico, mas devem ser comparados com outras fontes."},
+  {t:"m",q:"O Glitch afirma: “Só documentos escritos são fontes históricas.” Isso é:",o:["Verdadeiro","Falso"],a:1,w:"Fontes podem ser escritas, orais, materiais, imagéticas e sonoras. A História não depende só da escrita."},
+  {t:"m",q:"Por que historiadores comparam várias fontes?",o:["Cada fonte tem um ponto de vista e limites","Uma fonte nunca pode ser usada sozinha em nenhum caso","Para escolher só a que concorda com eles","Porque todas dizem exatamente o mesmo"],a:0,w:"Quem produz uma fonte tem intenções e um ponto de vista. Comparar fontes ajuda a construir explicações mais seguras."}]},
+ {id:"h6m3",n:"Guardião das Origens",boss:1,dif:"Desafio",u:UT,o:"As origens da humanidade, seus deslocamentos e os processos de sedentarização",h:"EF06HI03",hd:"Identificar as hipóteses científicas sobre o surgimento da espécie humana e sua historicidade e analisar os significados dos mitos de fundação.",
+  ctx:"Cientistas estudam fósseis e vestígios para explicar a origem da humanidade. Povos também criaram mitos de fundação para explicar suas origens. O Guardião do Códice Primordial foi corrompido e embaralhou as duas explicações.",
+  ev:["Pegadas fossilizadas em cinza vulcânica: fonte material.","Narrativa de criação de um povo: mito de fundação.","Ficha do fóssil de Lucy: pesquisa científica."],
+  q:[{t:"m",q:"O Guardião afirma: “Segundo as pesquisas científicas, a espécie humana teve origem no continente africano.” Isso é:",o:["Verdadeiro","Falso"],a:0,w:"Os fósseis mais antigos da nossa linhagem e do Homo sapiens foram achados na África. Essa é a hipótese mais aceita pela ciência hoje."},
+  {t:"m",q:"O fóssil “Lucy”, de cerca de 3,2 milhões de anos, foi encontrado em qual país?",o:["Etiópia","Brasil","Índia","Egito"],a:0,w:"Lucy, um Australopithecus afarensis, foi encontrada na Etiópia, em 1974."},
+  {t:"m",q:"O que é uma hipótese científica?",o:["Explicação baseada em evidências que pode ser revista com novas descobertas","Verdade absoluta que nunca muda","Opinião sem qualquer prova","Lenda transmitida pelos antigos"],a:0,w:"A ciência trabalha com hipóteses sustentadas por evidências. Novas descobertas podem confirmá-las ou corrigi-las."},
+  {t:"m",q:"O Guardião afirma: “Mitos de fundação não têm valor para a História.” Isso é:",o:["Verdadeiro","Falso"],a:1,w:"Mitos de fundação são narrativas que povos criam sobre suas origens. Não servem como prova científica, mas revelam valores, crenças e visões de mundo."},
+  {t:"o",q:"Ordene pelo surgimento, do mais antigo ao mais recente.",i:["Australopithecus","Homo habilis","Homo erectus","Homo sapiens"],w:"Em linhas gerais: Australopithecus (mais de 3 milhões de anos), Homo habilis (cerca de 2,4 milhões), Homo erectus (cerca de 1,9 milhão) e Homo sapiens (cerca de 300 mil anos). Várias espécies conviveram, então a linha não é reta."}]}]}}};
+
+/* ===== SERVIÇO DE SALVAMENTO (trocável por API REST futuramente) ===== */
+const Store={k:"chronos.v1",def:()=>({year:0,xp:0,fr:0,done:{},own:{},av:{hair:1,helm:0,glove:0,pack:0,col:"#22d3ee",tool:"#a78bfa",out:0,sty:0,eye:0,mouth:0,expr:0,acc:0,skin:"#ffd9b8",ecol:"#a78bfa"},mute:0,name:"",started:0,perf:0,prof:{bio:"",ban:"#22d3ee",tt:""}}),
+ load(){try{return Object.assign(Store.def(),JSON.parse(localStorage.getItem(Store.k)))}catch(e){return Store.def()}},
+ save(){try{localStorage.setItem(Store.k,JSON.stringify(P))}catch(e){}if(typeof sync=="function")sync()},wipe(){try{localStorage.removeItem(Store.k)}catch(e){}}};
+let P=Store.load(),M=null,mode="t";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],lv=()=>Math.floor(P.xp/100)+1;
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+function toast(s){const e=$("#toast");e.textContent=s;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",2200)}
+
+/* ===== ÁUDIO ===== */
+let AC,mg;
+function au(){if(AC)return;try{AC=new(window.AudioContext||window.webkitAudioContext)();mg=AC.createGain();mg.gain.value=P.mute?0:1;mg.connect(AC.destination);[110,164.8,220.5].forEach(f=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=.025;o.connect(g);g.connect(mg);o.start()})}catch(e){}}
+function tone(f,d=.15,ty="square"){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(.06,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.connect(g);g.connect(mg);o.start();o.stop(AC.currentTime+d)}
+function mute(){P.mute=P.mute?0:1;if(mg)mg.gain.value=P.mute?0:1;$("#mu").textContent="Som: "+(P.mute?"mudo":"ligado");Store.save()}
+
+/* ===== CENA 3D ===== */
+const R=new THREE.WebGLRenderer({canvas:$("#cv"),antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,1.5));
+const sc=new THREE.Scene();sc.fog=new THREE.Fog(0x14123a,10,34);
+const cam=new THREE.PerspectiveCamera(50,1,.1,100);cam.position.set(0,1.4,8);cam.lookAt(0,-.4,0);
+sc.add(new THREE.AmbientLight(0x7788bb,.9));const dl=new THREE.DirectionalLight(0xffffff,1);dl.position.set(3,5,4);sc.add(dl);const pl=new THREE.PointLight(0x22d3ee,1.2,20);pl.position.set(-3,2,3);sc.add(pl);
+const grid=new THREE.GridHelper(60,60,0x22d3ee,0x3b2a8a);grid.position.y=-1.9;sc.add(grid);
+const pg=new THREE.BufferGeometry(),pa=[];for(let i=0;i<260;i++)pa.push((Math.random()-.5)*34,Math.random()*14-2,(Math.random()-.5)*24);
+pg.setAttribute("position",new THREE.Float32BufferAttribute(pa,3));const parts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x9ae6ff,size:.07}));sc.add(parts);
+const core=new THREE.Group();[[2.2,0x22d3ee],[3,0xa78bfa],[3.8,0xf0abfc]].forEach(([r,c],i)=>{const t=new THREE.Mesh(new THREE.TorusGeometry(r,.03,6,64),new THREE.MeshBasicMaterial({color:c}));t.rotation.x=i*1.1;core.add(t)});core.position.set(0,.8,-3);sc.add(core);
+const GM=new THREE.DataTexture(new Uint8Array([110,180,255]),3,1,THREE.LuminanceFormat);GM.minFilter=GM.magFilter=THREE.NearestFilter;GM.needsUpdate=true;
+function mk(g,c,o=1.07){const m=new THREE.Mesh(g,new THREE.MeshToonMaterial({color:c,gradientMap:GM}));const l=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0x05050f,side:THREE.BackSide}));l.scale.setScalar(o);m.add(l);return m}
+const av=new THREE.Group();sc.add(av);
+const OPT=[{k:"out",n:"Traje (skins)",it:[["Padrão",0],["Astronauta Estelar",80],["Samurai Digital",120]]},{k:"sty",n:"Estilo",it:[["Fofo",0],["Herói (capa)",30]]},{k:"eye",n:"Olhos",it:[["Redondos",0],["Brilhantes",0],["Heroicos",0],["Felizes",20]]},{k:"expr",n:"Sobrancelhas",it:[["Calmas",0],["Fofas",0],["Determinadas",0],["Surpresas",0]]},{k:"mouth",n:"Sorriso",it:[["Sorriso",0],["Sorrisão",0],["Surpreso",0],["Convencido",20]]},{k:"acc",n:"Acessório",it:[["Nenhum",0],["Orelhas de gato",40],["Óculos holo",40],["Asinhas",80]]},{k:"hair",n:"Cabelo",it:[["Raspado",0],["Curto",0],["Espetado",0],["Longo",40]]},{k:"helm",n:"Capacete",it:[["Nenhum",0],["Domo",0],["Antena",60]]},{k:"glove",n:"Luvas",it:[["Padrão",0],["Neon",30]]},{k:"pack",n:"Mochila",it:[["Básica",0],["Cilíndrica",0],["Dupla",50]]}];
+const COLS=["#22d3ee","#a78bfa","#f0abfc","#4ade80","#fbbf24","#fb7185"];
+const shards=new THREE.Group();for(let i=0;i<16;i++){const m=mk(i%2?new THREE.OctahedronGeometry(.25):new THREE.TetrahedronGeometry(.28),[0x22d3ee,0xa78bfa,0xf0abfc,0xfbbf24][i%4]);m.position.set((Math.random()-.5)*20,Math.random()*5-.5,-2-Math.random()*8);m.userData.s=Math.random()+.5;shards.add(m)}sc.add(shards);
+function buildAv(){while(av.children.length)av.remove(av.children[0]);const a=P.av,C=new THREE.Color(a.out==1?"#f97316":a.out==2?"#dc2626":a.col),G=THREE,HC=0x4a2d9c,SK=new THREE.Color(a.skin||"#ffd9b8"),OC=[0x2b2f55,0xf1f5f9,0x1f1f2e][a.out||0];
+ const add=(g,c,x,y,z,r,s)=>{const m=mk(g,c);m.position.set(x,y,z);if(r)m.rotation.set(...r);if(s)m.scale.set(...s);av.add(m);return m},
+ bs=(g,c,x,y,z,s)=>{const m=new G.Mesh(g,new G.MeshBasicMaterial({color:c}));m.position.set(x,y,z);if(s)m.scale.set(...s);av.add(m);return m};
+ add(new G.CylinderGeometry(1.5,1.6,.15,32),0x1b2060,0,-1.55,0);const rg=new G.Mesh(new G.TorusGeometry(1.45,.04,6,48),new G.MeshBasicMaterial({color:a.col}));rg.rotation.x=1.57;rg.position.y=-1.46;av.add(rg);
+ [-1,1].forEach(s=>{add(new G.CylinderGeometry(.2,.23,.32,12),C,s*.25,-1.3,0);add(new G.CylinderGeometry(.15,.15,.4,10),OC,s*.25,-.95,0);add(new G.SphereGeometry(.2,12,10),C,s*.5,0,0);add(new G.CylinderGeometry(.1,.1,.55,8),OC,s*.55,-.4,0);add(new G.SphereGeometry(a.glove?.19:.15,12,10),a.glove?C:0x111426,s*.55,-.72,0);
+  face(bs,add,s,a)});
+ add(new G.CylinderGeometry(.4,.34,.8,16),OC,0,-.35,0);add(new G.CylinderGeometry(.41,.41,.1,16),C,0,-.62,0);add(new G.BoxGeometry(.5,.3,.06),C,0,-.15,.34);bs(new G.SphereGeometry(.09,10,8),a.tool,0,-.15,.38);
+ add(new G.SphereGeometry(.7,24,18),SK,0,.8,0);mouthF(bs,add,a);
+ if(a.hair>0){add(new G.SphereGeometry(.74,20,12,0,6.3,0,1.45),HC,0,.82,-.05);[-1,0,1].forEach(i=>add(new G.SphereGeometry(.28,10,8),HC,i*.38,1.3,.42,null,[1,.6,.7]))}
+ if(a.hair==2)for(let i=0;i<5;i++)add(new G.ConeGeometry(.2,.7,6),HC,(i-2)*.3,1.7-Math.abs(i-2)*.1,0,[0,0,(i-2)*-.25]);
+ if(a.hair==3){add(new G.BoxGeometry(1.1,1.2,.3),HC,0,.4,-.55);[-1,1].forEach(s=>add(new G.SphereGeometry(.2,10,8),HC,s*.72,.35,-.1,null,[1,2,1]))}
+ if(a.helm>=1){const d=new G.Mesh(new G.SphereGeometry(.85,20,14),new G.MeshToonMaterial({color:a.col,transparent:true,opacity:.22,depthWrite:false}));d.position.y=.85;av.add(d);add(new G.TorusGeometry(.62,.06,8,24),C,0,.12,0,[1.57,0,0])}
+ if(a.helm==2){add(new G.CylinderGeometry(.03,.03,.5,6),C,0,1.95,0);bs(new G.SphereGeometry(.11,10,8),a.tool,0,2.22,0)}
+ if(a.pack==0)add(new G.BoxGeometry(.7,.8,.3),0x1e2347,0,-.3,-.5);if(a.pack==1)add(new G.CylinderGeometry(.25,.25,.9,12),0x1e2347,0,-.25,-.48);
+ if(a.pack==2){add(new G.BoxGeometry(.7,.8,.3),0x1e2347,0,-.3,-.5);[-1,1].forEach(s=>add(new G.CylinderGeometry(.12,.12,.7,8),C,s*.42,-.3,-.5))}
+ bs(new G.SphereGeometry(.07,8,6),a.tool,0,-.2,-.67);
+ if(a.sty==1)add(new G.BoxGeometry(.9,1.3,.06),C,0,-.2,-.75,[.12,0,0]);
+ if(a.out==1)add(new G.TorusGeometry(.42,.07,8,20),0xf1f5f9,0,.12,0,[1.57,0,0]);
+ if(a.out==2){add(new G.TorusGeometry(.62,.06,8,24),C,0,1.15,0,[1.45,0,0]);[-1,1].forEach(s=>add(new G.BoxGeometry(.4,.1,.4),0x111118,s*.5,.2,0))}
+ if(a.acc==1)[-1,1].forEach(s=>{add(new G.ConeGeometry(.2,.5,4),HC,s*.42,1.5,0,[0,0,-s*.3]);add(new G.ConeGeometry(.1,.3,4),0xff8fab,s*.42,1.48,.08,[0,0,-s*.3])});
+ if(a.acc==2){[-1,1].forEach(s=>bs(new G.TorusGeometry(.19,.035,6,16),C,s*.25,.82,.72));bs(new G.BoxGeometry(.12,.03,.03),C,0,.82,.72)}
+ if(a.acc==3)[-1,1].forEach(s=>add(new G.ConeGeometry(.2,.9,4),0xf0abfc,s*.5,.2,-.6,[0,0,s*1.2]));
+ add(new G.CylinderGeometry(.04,.04,.8,6),0x94a3b8,.55,-.72,.45,[1.57,0,0]);const tip=bs(new G.SphereGeometry(.12,10,8),a.tool,.55,-.72,.9);tip.name="tip";const th=new G.Mesh(new G.TorusGeometry(.18,.02,6,20),new G.MeshBasicMaterial({color:a.tool}));th.position.set(.55,-.72,.9);av.add(th)}
+function buildAvOld(){while(av.children.length)av.remove(av.children[0]);const a=P.av,C=new THREE.Color(a.col);
+ const add=(g,c,x,y,z,r)=>{const m=mk(g,c);m.position.set(x,y,z);if(r)m.rotation.set(...r);av.add(m);return m},G=THREE;
+ add(new G.CylinderGeometry(.4,.34,.95,14),0x2b2f55,0,.25,0);add(new G.CylinderGeometry(.43,.43,.1,14),C,0,-.1,0);add(new G.BoxGeometry(.5,.14,.05),C,0,.5,.36);
+ [-1,1].forEach(s=>{add(new G.CylinderGeometry(.13,.13,.8,8),0x1e2347,s*.2,-.9,0);add(new G.CylinderGeometry(.11,.1,.7,8),0x2b2f55,s*.55,.2,0);add(new G.SphereGeometry(a.glove?.17:.13,10,8),a.glove?C:0x111426,s*.55,-.2,0);add(new G.SphereGeometry(.05,8,6),0x111122,s*.14,1.08,.36)});
+ add(new G.SphereGeometry(.4,16,12),0xf1c9a5,0,1.05,0);
+ const hc=0x3b2a1a;if(a.hair==1||a.hair==3)add(new G.SphereGeometry(.43,16,10,0,6.3,0,1.7),hc,0,1.08,-.02);
+ if(a.hair==2)for(let i=0;i<5;i++)add(new G.ConeGeometry(.12,.45,6),hc,(i-2)*.16,1.5-Math.abs(i-2)*.06,0);
+ if(a.hair==3)add(new G.BoxGeometry(.8,.9,.2),hc,0,.8,-.3);
+ if(a.helm>=1){add(new G.SphereGeometry(.49,16,10,0,6.3,0,1.57),0x1e293b,0,1.12,0);add(new G.TorusGeometry(.49,.04,6,20),C,0,1.12,0,[1.57,0,0])}
+ if(a.helm==2)add(new G.CylinderGeometry(.03,.03,.5,6),C,.3,1.6,0);
+ if(a.pack==0)add(new G.BoxGeometry(.6,.8,.3),0x1e2347,0,.3,-.45);if(a.pack==1)add(new G.CylinderGeometry(.22,.22,.9,10),0x1e2347,0,.3,-.42);
+ if(a.pack==2){add(new G.BoxGeometry(.6,.8,.3),0x1e2347,0,.3,-.45);[-1,1].forEach(s=>add(new G.CylinderGeometry(.12,.12,.7,8),C,s*.38,.3,-.45))}
+ add(new G.CylinderGeometry(.04,.04,.7,6),0x94a3b8,.62,-.2,.35,[1.57,0,0]);
+ const tip=new G.Mesh(new G.SphereGeometry(.1,10,8),new G.MeshBasicMaterial({color:a.tool}));tip.position.set(.62,-.2,.72);tip.name="tip";av.add(tip)}
+let atkT=0,hurtT=0,tnt=0,enemy=null,orbs=[],beam=new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,1,6),new THREE.MeshBasicMaterial({color:0xffffff}));beam.visible=false;sc.add(beam);let hit=0;
+function mkEnemy(boss,k){if(enemy)sc.remove(enemy);enemy=new THREE.Group();const G=THREE,
+ add=(g,c,x,y,z,r,s)=>{const m=mk(g,c);m.position.set(x,y,z);if(r)m.rotation.set(...r);if(s)m.scale.set(...s);enemy.add(m);return m},
+ bs=(g,c,x,y,z,r,s)=>{const m=new G.Mesh(g,new G.MeshBasicMaterial({color:c}));m.position.set(x,y,z);if(r)m.rotation.set(...r);if(s)m.scale.set(...s);enemy.add(m);return m},
+ bd=boss?0x3b1a78:k=="h6m2"?0x7c2d12:0x5b2ba8,ac=boss?0xe879f9:k=="h6m2"?0xfbbf24:0xff3d6e;
+ add(new G.IcosahedronGeometry(.85,1),bd,0,0,0);
+ [-1,1].forEach(s=>{add(new G.ConeGeometry(.2,.9,6),0x1a0a30,s*.55,.95,0,[0,0,-s*.45]);(enemy.userData.e=enemy.userData.e||[]).push(bs(new G.SphereGeometry(.2,12,10),0xff1744,s*.36,.15,.78,0,[1.3,.9,.5]));bs(new G.SphereGeometry(.05,8,6),0x000000,s*.36,.15,.9,0,[.5,2,.4]);add(new G.BoxGeometry(.55,.11,.1),0x12041f,s*.36,.42,.8,[0,0,s*.4]);
+  for(let i=0;i<3;i++)add(new G.ConeGeometry(.1,.4,5),ac,s*(.8+i*.05),.2-i*.35,-.2,[0,0,-s*1.3])});
+ enemy.userData.m=bs(new G.BoxGeometry(.75,.2,.1),0x14001f,0,-.32,.8);
+ for(let i=0;i<5;i++){bs(new G.ConeGeometry(.055,.17,4),0xffffff,-.3+i*.15,-.24,.86,[3.14,0,0]);if(i<4)bs(new G.ConeGeometry(.05,.14,4),0xffffff,-.225+i*.15,-.4,.86)}
+ if(boss){bs(new G.SphereGeometry(.13,10,8),0xff1744,0,.58,.74,0,[1,1.3,.5]);add(new G.ConeGeometry(.24,1.2,6),0x1a0a30,0,1.1,0);[-1,1].forEach(s=>{for(let i=0;i<3;i++)add(new G.ConeGeometry(.14,1.3-i*.25,4),0x2a0f55,s*(.9+i*.4),.5-i*.3,-.3,[0,0,-s*(1.1+i*.2)])})}
+ bs(new G.TorusGeometry(1.25,.025,6,40),ac,0,0,0,[1.57,.3,0]);
+ const o=new G.Group();for(let i=0;i<6;i++){const m=mk(new G.BoxGeometry(.2,.2,.2),i%2?ac:0x22d3ee);m.position.set(Math.cos(i*1.05)*1.4,Math.sin(i*2)*.3,Math.sin(i*1.05)*1.4);o.add(m)}enemy.add(o);enemy.userData.o=o;
+ const L=new G.PointLight(boss?0xe879f9:0xff3d6e,1.6,7);L.position.set(0,.5,2.5);enemy.add(L);
+ enemy.position.set(3.4,.4,0);enemy.scale.setScalar(boss?1.4:1.05);sc.add(enemy)}
+function mkEnemyOld(boss){if(enemy)sc.remove(enemy);enemy=new THREE.Group();enemy.add(boss?mk(new THREE.TorusKnotGeometry(.9,.3,60,8),0xf0abfc):mk(new THREE.IcosahedronGeometry(.9,0),0xfb7185));if(boss)enemy.add(mk(new THREE.IcosahedronGeometry(.6,0),0x22d3ee));enemy.position.set(3.4,.4,0);enemy.scale.setScalar(boss?1.3:1);sc.add(enemy)}
+function mkOrbs(){orbs.forEach(o=>sc.remove(o));const G=THREE;orbs=[[.4,1.2,1],[2.4,.2,2],[-.6,.1,2.6]].map((p,i)=>{const o=new G.Group(),c=new G.Mesh(new G.OctahedronGeometry(.45),new G.MeshToonMaterial({color:0x34d399,gradientMap:GM,emissive:0x0f766e}));c.scale.y=1.7;
+ const l=new G.Mesh(new G.OctahedronGeometry(.45),new G.MeshBasicMaterial({color:0x05050f,side:G.BackSide}));l.scale.setScalar(1.09);c.add(l);o.add(c);
+ const k=new G.Mesh(new G.OctahedronGeometry(.2),new G.MeshBasicMaterial({color:0xd1fae5}));k.scale.y=1.7;o.add(k);
+ [.75,.95].forEach((r,j)=>{const h=new G.Mesh(new G.TorusGeometry(r,.025,6,36),new G.MeshBasicMaterial({color:j?0xa78bfa:0x67e8f9}));h.rotation.x=1.57+j*.5;o.add(h)});
+ o.add(new G.Mesh(new G.SphereGeometry(.9,8,6),new G.MeshBasicMaterial({visible:false})));
+ o.position.set(...p);o.userData={i,y0:p[1]};o.traverse(m=>m.userData.i=i);sc.add(o);return o})}
+function mkOrbsOld(){orbs.forEach(o=>sc.remove(o));orbs=[[.4,1.3,1],[2.4,.3,2],[-.6,.2,2.6]].map((p,i)=>{const o=new THREE.Mesh(new THREE.OctahedronGeometry(.4),new THREE.MeshBasicMaterial({color:0x4ade80,wireframe:true}));o.position.set(...p);o.userData.i=i;sc.add(o);return o})}
+function fire(){atkT=24;const tip=av.getObjectByName("tip"),a=new THREE.Vector3();tip.getWorldPosition(a);const b=enemy.position.clone(),d=b.clone().sub(a);beam.material.color.set(P.av.tool);beam.position.copy(a).add(b).multiplyScalar(.5);beam.scale.set(1,d.length(),1);beam.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());beam.visible=true;hit=14;setTimeout(()=>beam.visible=false,260)}
+function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}addEventListener("resize",rs);rs();
+let ax=-2.4;
+function loop(t){requestAnimationFrame(loop);t*=.001;const vis=["t","ch","ci","lb","pr","mis","fr","ep"].includes(mode);av.visible=vis;core.visible=true;
+ const tx=mode=="mis"?-3.4:mode=="t"?3.4:-2.4;ax+=(tx-ax)*.08;const p=atkT>0?Math.sin((1-atkT/24)*3.14):0,w=M&&M.s=="win",hh=hurtT>0?Math.sin(hurtT*.9)*.15*hurtT/30:0;if(atkT>0)atkT--;if(hurtT>0)hurtT--;av.position.set(ax+p*2.2+hh*3,Math.sin(t*2)*.05+(w?Math.abs(Math.sin(t*5))*.9:0)+p*.3,p*.8);av.rotation.y=(mode=="t"?-.5:.5)+Math.sin(t*.6)*.35+p*.5+(w?t*3:0);av.rotation.z=hh;av.scale.setScalar(mode=="ch"?1.05:.95);
+ {const dt=Math.min(t-lt,.05),fl=M&&M.s=="fld";lt=t;FG.visible=!!fl;if(fl){core.visible=false;fieldTick(dt,t);camF=1}else if(camF){cam.position.set(0,1.4,8);cam.lookAt(0,-.4,0);camF=0}}
+ core.children.forEach((c,i)=>{c.rotation.y=t*(.3+i*.2);c.rotation.z=t*.2});parts.rotation.y=t*.02;shards.children.forEach((s,i)=>{s.rotation.x=t*s.userData.s;s.rotation.y=t*.7;s.position.y+=Math.sin(t+i)*.003});
+ if(enemy){enemy.visible=mode=="mis"&&M&&M.s=="bat";enemy.rotation.y=-.35+Math.sin(t)*.2;enemy.rotation.x=0;enemy.position.y=.4+Math.sin(t*1.5)*.15;enemy.userData.o.rotation.y=t*1.5;const lx=tnt>0?Math.sin(tnt/40*3.14)*6.2:0;if(tnt>0)tnt--;enemy.position.x=3.4-lx+(Math.random()-.5)*(hit?.3:.03);const E=enemy.userData.e,Mo=enemy.userData.m;if(E)E.forEach(e=>e.scale.y=hit>0?.2:tnt>0?1.5:.9+Math.sin(t*3)*.08);if(Mo)Mo.scale.y=hit>0?2.4:tnt>0?1.8:1;sk.visible=hit>0;if(hit>0){sk.position.copy(enemy.position);sk.scale.setScalar(1+(14-hit)*.3);sk.material.opacity=hit/14;sk.lookAt(cam.position)}if(hit)hit--}
+ orbs.forEach(o=>{o.visible=mode=="mis"&&M&&(M.s=="exp"||M.s=="fld")&&!M.got.includes(o.userData.i);o.rotation.y=t*1.2;o.position.y=o.userData.y0+Math.sin(t*2+o.userData.i)*.15});
+ R.render(sc,cam)}
+const rc=new THREE.Raycaster();$("#cv").addEventListener("pointerdown",e=>{if(mode!="mis"||!M||M.s!="exp")return;rc.setFromCamera({x:e.clientX/innerWidth*2-1,y:-(e.clientY/innerHeight)*2+1},cam);const h=rc.intersectObjects(orbs.filter(o=>o.visible),true);if(h.length)collect(h[0].object.userData.i)});
+
+/* ===== INTERFACE ===== */
+const TT=()=>[["Recruta Crononauta",1],["Investigador do Tempo",Object.keys(P.done).length>0],["Guardião da História",!!P.done.h6m3],["Explorador das Eras",lv()>=3]].filter(x=>x[1]).map(x=>x[0]);const title=()=>TT().includes(P.prof.tt)?P.prof.tt:TT().pop();
+function hud(){$("#hud").innerHTML=`<b>${P.name||"Crononauta"}</b><span>Nv ${lv()}</span><i class="bar"><b style="width:${P.xp%100}%"></b></i><span class="dim">${P.xp%100}/100 XP</span><span>◆ ${P.fr} Fragmentos de Memória</span>`}
+function show(id){mode=id;$$(".scr").forEach(e=>e.classList.toggle("on",e.id==id));$("#hud").style.display=["lb","mp","pr","mis","fr","ep"].includes(id)?"flex":"none";hud();
+ if(id=="sub")$("#dg").innerHTML=D.disc.map(([n,a])=>`<button class="b card pn" ${a?`data-d="${n}"`:"disabled"}><h3>${n}</h3><small>${a?"Disponível":"Em breve"}</small></button>`).join("");
+ if(id=="yr")$("#yg").innerHTML=D.years.map(([y,a])=>`<button class="b card pn" ${a?`data-y="${y}"`:"disabled"}><h3>${y}º ano</h3><small>${a?"Disponível":"Em preparação"}</small></button>`).join("");
+ if(id=="ch")charUI();if(id=="mp")mapUI();if(id=="pr")profUI();if(id=="fr")frUI();if(id=="ep")epUI();
+ if(id=="ci"){M=null;clio(0)}}
+function charUI(){$("#opts").innerHTML=OPT.map(o=>`<h3>${o.n}</h3><div class="row">${o.it.map((x,i)=>{const own=!x[1]||P.own[o.k+i];return`<button class="b ${P.av[o.k]==i?"sel":""}" data-k="${o.k}" data-i="${i}">${x[0]}${own?"":" · "+x[1]+" ◆"}</button>`}).join("")}</div>`).join("")+
+ [["col","Cor do traje",COLS],["tool","Cor da ferramenta",COLS],["ecol","Cor dos olhos",COLS],["skin","Tom de pele",SKN]].map(([k,n,L])=>`<h3>${n}</h3><div class="row">${L.map(c=>`<button class="b sw" aria-label="${c}" style="background:${c}" data-s="${k}" data-c="${c}"></button>`).join("")}</div>`).join("");$("#nm").value=P.name}
+$("#opts").onclick=e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;if(d.s){P.av[d.s]=d.c}else{const o=OPT.find(o=>o.k==d.k),x=o.it[d.i],id=d.k+d.i;if(x[1]&&!P.own[id]){if(P.fr<x[1])return toast("Fragmentos insuficientes: faltam "+(x[1]-P.fr)+" ◆");P.fr-=x[1];P.own[id]=1;toast("Item desbloqueado!");hud()}P.av[d.k]=+d.i}Store.save();buildAv();charUI()};
+const CL=["Conexão estabelecida. Eu sou a Clio-7, IA guardiã dos arquivos da Chronosfera. Bem-vindo(a), Crononauta !N.","Um malware chamado OBLÍVIO corrompeu o núcleo do sistema. Ele apaga registros e troca fatos verdadeiros por falsos.","Sua Ferramenta de Restauração dispara feixes quando você usa conhecimento. Cada resposta certa restaura a verdade.","Vamos começar pelo Setor 1: o tempo e as fontes da História. Abra o mapa quando estiver pronto."];
+function clio(i){$("#cl").textContent=CL[i].replace("!N",P.name);$("#cn").textContent=i<3?"Continuar":"Ir ao lobby";$("#cn").onclick=()=>i<3?clio(i+1):show("lb")}
+function mapUI(){$("#yl").textContent=P.year+"º ano";const s=D.h[P.year];if(!s){$("#sec").innerHTML="<p class='pn'>Conteúdo deste ano em preparação.</p>";return}
+ const done=s.m.every(m=>P.done[m.id]);
+ $("#sec").innerHTML=`<div class="pn" style="grid-column:1/-1"><h3>${s.name} ${done?"· restaurado":""}</h3>${s.m.map((m,i)=>{const d=P.done[m.id],ok=i==0||P.done[s.m[i-1].id];return`<div class="row" style="align-items:center;justify-content:space-between"><span><b>${m.n}</b> <span class="dim">· ${m.dif} · ${m.h}${d?` · ${d.ok}/${d.n} acertos`:""}</span></span><button class="b" ${ok?`data-m="${i}"`:"disabled"}>${d?"Jogar de novo":ok?"Jogar":"Bloqueada"}</button></div>`}).join("")}</div>`+(D.future[P.year]||[]).map(f=>`<div class="pn card dim"><h3>${f}</h3><small>Em breve</small></div>`).join("")}
+function profUI(){$("#pn").textContent=(P.name||"Crononauta")+" · Nv "+lv();$("#pr .pn").style.borderLeft="8px solid "+cc(P.prof.ban);$("#ps").innerHTML=(P.prof.bio?`<i>“${esc(P.prof.bio)}”</i><br>`:"")+`Título: <b>${title()}</b><br>${P.xp} XP · ◆ ${P.fr} Fragmentos de Memória · ${P.year}º ano`;
+ const A=[["Primeira restauração",Object.keys(P.done).length>0],["Sem falhas em uma missão",P.perf],["Guardião restaurado",P.done.h6m3],["Nível 3",lv()>=3]];
+ $("#ac").innerHTML=A.map(([n,o])=>`<div class="${o?"g":"dim"}">${o?"✔":"○"} ${n}</div>`).join("");
+ const h=Object.entries(P.done);$("#hs").innerHTML=h.length?h.map(([id,d])=>{const m=Object.values(D.h).flatMap(s=>s.m).find(m=>m.id==id);return`<div>${m?m.n:id}: ${d.ok}/${d.n}</div>`}).join(""):"<span class='dim'>Nenhuma missão concluída ainda.</span>"}
+
+/* ===== MISSÕES E BATALHA ===== */
+const ui=h=>$("#mis").innerHTML=`<div class="pn w60 msg" style="max-height:44vh">${h}</div>`;
+function startMission(m){M={m,s:"intro",got:[]};mkOrbs();mkEnemy(m.boss,m.id);show("mis");
+ ui(`<h2>${m.n}</h2><p><b>Clio-7:</b> ${m.ctx}</p><p class="dim"><b>Unidade temática:</b> ${m.u}<br><b>Objeto de conhecimento:</b> ${m.o}<br><b>Habilidade BNCC ${m.h}:</b> ${m.hd}</p><button class="b big" id="en">Entrar na Chronosfera</button><button class="b" data-go="mp">Voltar ao mapa</button>`);$("#en").onclick=field}
+const TL='<div class="row" style="justify-content:space-between;border-top:3px solid var(--c);padding-top:6px;margin:8px 0"><span>300 a.C.</span><span>100 a.C.</span><span>Ano 1</span><span>100 d.C.</span><span>1500 d.C.</span></div><p class="dim">← mais antigo · mais recente →</p>';
+const LS={h6m1:[["Como medimos o tempo?","Para estudar o passado, historiadores usam medidas como a década (10 anos), o século (100 anos) e o milênio (1000 anos). O século I vai do ano 1 ao 100, e o século XX vai de 1901 a 2000."],["Antes e depois de Cristo","Os anos depois do ano 1 são chamados d.C. e crescem para frente. Antes do ano 1 usamos a.C., e a contagem é regressiva: 300 a.C. é mais antigo que 100 a.C.",TL],["Períodos e continuidades","Historiadores dividem o passado em períodos, como Antiguidade e Idade Média, para organizar o estudo. É uma convenção: nem todos os povos viveram as mesmas fases ao mesmo tempo. Algumas coisas continuam por séculos (continuidades) e outras mudam (rupturas)."]],
+ h6m2:[["O que é uma fonte histórica?","Fonte histórica é qualquer vestígio que ajuda a conhecer o passado: uma carta, uma moeda, uma foto, uma música ou uma história contada por alguém."],["Tipos de fonte","<b>Escritas:</b> cartas, jornais. <b>Orais:</b> relatos e memórias. <b>Materiais:</b> objetos e ruínas. <b>Imagéticas:</b> pinturas e fotografias. <b>Sonoras:</b> músicas e gravações."],["Como usar as fontes","Historiadores perguntam: quem produziu? Para quê? Quando? Cada fonte mostra um ponto de vista e tem limites. Por isso eles comparam várias fontes para construir explicações mais seguras."]],
+ h6m3:[["De onde viemos? O que diz a ciência","Cientistas estudam fósseis, ferramentas e pegadas. As pesquisas indicam que a espécie humana surgiu na África. O Homo sapiens apareceu há cerca de 300 mil anos e depois se espalhou por outros continentes."],["Nossos antepassados","Entre os parentes extintos estão o Australopithecus (como Lucy, encontrada na Etiópia), o Homo habilis e o Homo erectus. Várias espécies conviveram, então a evolução não é uma escada reta."],["Hipóteses e mitos de fundação","Hipótese científica é uma explicação baseada em evidências, que pode ser revista com novas descobertas. Mitos de fundação são narrativas que povos criaram para explicar suas origens: não são prova científica, mas revelam valores e crenças."]]};
+function lesson(i){const L=LS[M.m.id],p=L[i];M.s="les";ui(`<h3>Miniaula · ${i+1}/${L.length}</h3><div class="row" style="align-items:center;gap:10px"><div class="orb"></div><h2 style="margin:0">${p[0]}</h2></div><p>${p[1]}</p>${p[2]||""}<div>${i?'<button class="b" id="pv">Voltar</button>':""}<button class="b big" id="nl">${i<L.length-1?"Próxima":"Começar exploração"}</button></div>`);if(i)$("#pv").onclick=()=>lesson(i-1);$("#nl").onclick=()=>i<L.length-1?lesson(i+1):explore()}
+function explore(){M.s="exp";M.got=[];renderExp()}
+function renderExp(){const n=M.got.length;ui(`<h3>Exploração · ${n}/3 evidências</h3><p>Clique nos cristais verdes no cenário para coletar evidências.</p>${M.got.map(i=>`<p class="g">✔ ${M.m.ev[i]}</p>`).join("")}<button class="b" id="cl2" ${n==3?"disabled":""}>Coletar próxima evidência</button><button class="b big" id="fg" ${n<3?"disabled":""}>${M.m.boss?"Enfrentar o Guardião":"Enfrentar o Glitch"}</button>`);$("#cl2").onclick=()=>collect([0,1,2].find(i=>!M.got.includes(i)));$("#fg").onclick=battle}
+function collect(i){if(M.got.includes(i))return;M.got.push(i);tone(880,.2,"sine");renderExp()}
+function battle(){M.s="bat";M.hp=100;M.qs=shuf(M.m.q.map(q=>({...q,r:0})));M.n0=M.qs.length;M.ok=0;nextQ()}
+function nextQ(){const q=M.qs[0],b=M.m.boss;let body;
+ if(q.t=="m")body=`<div class="ans">${q.o.map((x,i)=>`<button class="b" data-a="${i}">${x}</button>`).join("")}</div>`;
+ else{M.pick=[];body=`<div class="row" id="oi">${shuf(q.i).map(x=>`<button class="b" data-o="${x}">${x}</button>`).join("")}</div><p id="op" class="g"></p>`}
+ ui(`<div class="row" style="gap:18px;align-items:center"><span>Você <i class="bar h"><b style="width:${M.hp}%"></b></i></span><span>${b?"Guardião":"Glitch"} <i class="bar e"><b style="width:${100*M.qs.length/M.n0}%"></b></i></span></div><h3>${q.q}</h3>${body}<div id="fb"></div>`);
+ $$("[data-a]").forEach(x=>x.onclick=()=>answer(+x.dataset.a==q.a,+x.dataset.a));
+ $$("[data-o]").forEach(x=>x.onclick=()=>{M.pick.push(x.dataset.o);x.disabled=true;$("#op").textContent=M.pick.join(" → ");if(M.pick.length==q.i.length)answer(M.pick.every((v,i)=>v==q.i[i]))})}
+function answer(ok,idx){const q=M.qs.shift();$$(".ans button,#oi button").forEach(x=>{x.disabled=true;if(q.t=="m"){const i=+x.dataset.a;if(i==q.a)x.classList.add("ok");else if(i==idx)x.classList.add("no")}});
+ if(ok){M.ok++;fire();tone(660,.2);tone(990,.25,"sine")}else{M.hp-=25;tnt=40;setTimeout(()=>hurtT=30,330);tone(110,.4,"sawtooth");if(!q.r){q.r=1;M.qs.push(q)}}
+ $("#fb").innerHTML=`<p class="${ok?"g":"r"}"><b>${ok?"Restauração concluída!":"Integridade comprometida."}</b></p><p><b>Clio-7:</b> ${q.w}</p>${!ok&&M.hp>0&&q.r&&M.qs.includes(q)?"<p class='dim'>Esta pergunta voltará no fim da batalha.</p>":""}<button class="b big" id="nx">Continuar</button>`;
+ $("#nx").onclick=()=>M.hp<=0?fail():M.qs.length?nextQ():win()}
+function fail(){ui(`<h2 class="r">Conexão perdida</h2><p><b>Clio-7:</b> O Oblívio venceu esta rodada, mas você aprendeu com as explicações. Revise e tente de novo.</p><button class="b big" id="rt">Tentar novamente</button><button class="b" data-go="mp">Voltar ao mapa</button>`);$("#rt").onclick=battle}
+function win(){M.s="win";const m=M.m,first=!P.done[m.id],xp=first?40+M.ok*10+(m.boss?60:0)+(F.xp||0):0,fr=first?10+M.ok*5+(m.boss?30:0)+(F.fr||0):0,l0=lv(),pd=P.done[m.id];
+ P.done[m.id]={ok:Math.max(M.ok,pd?pd.ok:0),n:M.n0};if(M.hp==100)P.perf=1;P.xp+=xp;P.fr+=fr;Store.save();hud();confetti();[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.25,"triangle"),i*140));
+ ui(`<h1 style="font-size:clamp(28px,5vw,56px);margin:0;text-align:center">${m.boss?"GUARDIÃO RESTAURADO!":"MISSÃO COMPLETA!"}</h1><div class="stars" style="text-align:center">${stars(M.hp)}</div><p>Acertos: ${M.ok}/${M.n0} · Integridade final: ${M.hp}%</p>${first?`<p>+${xp} XP · +${fr} ◆ Fragmentos de Memória</p>`:"<p class='dim'>Missão já concluída antes: sem novas recompensas.</p>"}${lv()>l0?`<p class="g">Nível ${lv()} alcançado! Título: ${title()}</p>`:""}<p><b>Clio-7:</b> ${m.boss?"Setor 1 restaurado. Os demais setores serão liberados em breve.":"Registro recuperado. Siga para a próxima missão."}</p><button class="b big" data-go="mp">Mapa de setores</button><button class="b" data-go="ch">Gastar fragmentos</button>`)}
+
+/* ===== EVENTOS ===== */
+document.addEventListener("click",e=>{au();const b=e.target.closest("button");if(!b)return;tone(440,.06);const d=b.dataset;
+ if(d.go)show(d.go);if(d.d){show("yr")}if(d.y){P.year=+d.y;Store.save();show(P.started?"lb":"ch")}if(d.m!==undefined)startMission(D.h[P.year].m[+d.m])});
+$("#go").onclick=()=>{if(P.started&&!confirm("Já existe progresso salvo. Iniciar nova jornada apaga o progresso. Continuar?"))return;if(P.started){Store.wipe();P=Store.def();buildAv()}show("sub")};
+$("#cont").onclick=()=>show("lb");
+$("#ok").onclick=()=>{P.name=$("#nm").value.trim()||"Crononauta";const f=!P.started;P.started=1;Store.save();show(f?"ci":"lb")};
+$("#mu").onclick=mute;$("#mu2").onclick=mute;$("#rs").onclick=()=>{if(confirm("Apagar todo o progresso?")){Store.wipe();P=Store.def();buildAv();$("#cont").style.display="none";show("t")}};
+if(P.started)$("#cont").style.display="inline-block";$("#mu").textContent="Som: "+(P.mute?"mudo":"ligado");
+/* ===== PERFIL E AMIGOS (db compartilhado do claude.ai; sem ele o jogo segue offline) ===== */
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])),cc=c=>/^#[0-9a-f]{6}$/i.test(c)?c:"#22d3ee";
+let DB=null,UID=null,CODE="",PL={},FRs=[[],[]],EP={};
+const chip=p=>`<span class="chp" style="background:linear-gradient(135deg,${cc(p.av&&p.av.col)},${cc(p.av&&p.av.tool)})">${esc((p.name||"?")[0].toUpperCase())}</span>`;
+function sync(){clearTimeout(sync.t);sync.t=setTimeout(()=>{if(DB&&P.started&&CODE)DB.doc("players/"+UID).set({name:P.name,code:CODE,bio:P.prof.bio,ban:cc(P.prof.ban),tt:title(),lv:lv(),av:P.av,ts:Date.now()}).catch(()=>{})},1200)}
+async function net(){try{if(!window.claude)return;const u=await claude.use("user"),d=await claude.use("db");if(!u||!d)return;UID=await u.id();if(!UID)return;DB=d;
+ const s=await DB.doc("players/"+UID).get();if(s.exists)CODE=s.data().code||"";if(!CODE)for(let i=0;i<6;i++)CODE+="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.random()*32|0];
+ DB.collection("players").onSnapshot(q=>{PL={};q.docs.forEach(x=>PL[x.id]=x.data());if(mode=="fr")frUI()},()=>{});
+ const f=DB.collection("friends"),up=k=>q=>{FRs[k]=q.docs.map(x=>({id:x.id,...x.data()}));if(mode=="fr")frUI()};f.where("from","==",UID).onSnapshot(up(0),()=>{});f.where("to","==",UID).onSnapshot(up(1),()=>{});sync();if(mode=="fr")frUI()}catch(e){}}
+function frUI(){const b=$("#fl");if(!DB){b.innerHTML='<p class="dim">Amigos funcionam quando você abre o jogo pelo link do claude.ai com a conta conectada. Sem conexão não dá para encontrar outros jogadores.</p>';return}
+ const v=($("#ac")||{}).value||"",all=[...FRs[0],...FRs[1]],acc=all.filter(x=>x.status=="accepted"),inc=FRs[1].filter(x=>x.status=="pending"),out=FRs[0].filter(x=>x.status=="pending"),
+ oth=x=>x.from==UID?x.to:x.from,card=(id,ex)=>{const p=PL[id]||{};return`<div class="pn" style="margin:8px 0;border-left:6px solid ${cc(p.ban)}"><div class="row" style="align-items:center;gap:10px">${chip(p)}<div style="flex:1"><b>${esc(p.name||"Crononauta")}</b> <span class="dim">Nv ${+p.lv||1} · ${esc(p.tt||"")}</span><br><span class="dim">${esc(p.bio||"")}</span></div>${ex}</div></div>`};
+ b.innerHTML=`<p>Seu código de amigo: <b class="g" style="font-size:1.4em">${CODE}</b></p><div class="row"><input id="ac" maxlength="6" placeholder="Código do amigo" style="text-transform:uppercase;width:150px"><button class="b" id="aa">Adicionar</button></div>`+
+ (inc.length?"<h3>Pedidos recebidos</h3>"+inc.map(x=>card(x.from,`<button class="b" data-fa="${esc(x.id)}">Aceitar</button><button class="b" data-fd="${esc(x.id)}">Recusar</button>`)).join(""):"")+
+ `<h3>Meus amigos (${acc.length})</h3>`+(acc.length?acc.map(x=>card(oth(x),`<button class="b" data-fd="${esc(x.id)}">Remover</button>`)).join(""):'<p class="dim">Ainda sem amigos. Troque códigos com colegas!</p>')+
+ (out.length?"<h3>Pedidos enviados</h3>"+out.map(x=>card(x.to,`<button class="b" data-fd="${esc(x.id)}">Cancelar</button>`)).join(""):"");$("#ac").value=v}
+$("#fl").onclick=async e=>{const b=e.target.closest("button");if(!b||!DB)return;const d=b.dataset;try{
+ if(b.id=="aa"){const c=$("#ac").value.trim().toUpperCase();if(c.length!=6)return toast("O código tem 6 caracteres.");if(c==CODE)return toast("Esse é o seu próprio código.");
+  const q=await DB.collection("players").where("code","==",c).get();if(q.empty)return toast("Nenhum jogador com esse código.");const id=q.docs[0].id;
+  if([...FRs[0],...FRs[1]].some(x=>x.from==id||x.to==id))return toast("Já existe um pedido ou amizade com esse jogador.");
+  await DB.doc("friends/"+UID+"_"+id).set({from:UID,to:id,status:"pending",ts:Date.now()});$("#ac").value="";toast("Pedido enviado!")}
+ if(d.fa){await DB.doc("friends/"+d.fa).update({status:"accepted"});toast("Amigo adicionado!")}if(d.fd)await DB.doc("friends/"+d.fd).delete()}catch(x){toast("Não foi possível concluir. Tente de novo.")}};
+function epUI(){EP={ban:cc(P.prof.ban),tt:title()};$("#en2").value=P.name;$("#bi").value=P.prof.bio;epR()}
+function epR(){$("#bc").innerHTML=COLS.map(c=>`<button class="b sw ${EP.ban==c?"sel":""}" style="background:${c}" aria-label="${c}" data-eb="${c}"></button>`).join("");$("#tt").innerHTML=TT().map(t=>`<button class="b ${EP.tt==t?"sel":""}" data-et="${esc(t)}">${esc(t)}</button>`).join("")}
+$("#ep").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.eb){EP.ban=b.dataset.eb;epR()}if(b.dataset.et){EP.tt=b.dataset.et;epR()}if(b.id=="sp"){P.name=$("#en2").value.trim()||P.name||"Crononauta";P.prof={bio:$("#bi").value.trim(),ban:EP.ban,tt:EP.tt};Store.save();hud();toast("Perfil salvo!");show("pr")}};
+/* ===== ROSTO, EFEITOS E VITÓRIA ===== */
+const SKN=["#ffe0c8","#ffd9b8","#f6c9a0","#e0a878","#b9805a","#8a5a3c","#5c3a28"];
+P.av=Object.assign({out:0,sty:0,eye:0,mouth:0,expr:0,acc:0,skin:"#ffd9b8",ecol:"#a78bfa"},P.av);
+const sk=new THREE.Mesh(new THREE.TorusGeometry(.5,.07,8,24),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true}));sk.visible=false;sc.add(sk);
+const stars=hp=>{const n=hp==100?3:hp>=50?2:1;return"★".repeat(n)+"☆".repeat(3-n)};
+function confetti(){for(let i=0;i<60;i++){const d=document.createElement("i");d.className="cf";d.style.cssText=`left:${Math.random()*100}vw;background:${["#22d3ee","#a78bfa","#f0abfc","#fbbf24","#4ade80","#fb7185"][i%6]};animation-delay:${Math.random()*1.2}s;animation-duration:${2.5+Math.random()*2}s;transform:rotate(${Math.random()*360}deg)`;document.body.appendChild(d);setTimeout(()=>d.remove(),5500)}}
+function face(bs,add,s,a){const G=THREE,e=a.eye||0,x=s*.25,k=e==1?1.2:e==2?.85:1,r=a.expr||0;
+ if(e==3)add(new G.TorusGeometry(.12,.03,6,12,3.14),0x2a1a3a,x,.78,.68);
+ else{bs(new G.SphereGeometry(.16*k,14,12),0xffffff,x,.82,.6,[1,e==2?1:1.25,.5]);bs(new G.SphereGeometry(.11*k,12,10),new G.Color(a.ecol||"#a78bfa"),x,.8,.66,[1,1.3,.4]);bs(new G.SphereGeometry(.06*k,10,8),0x111122,x,.8,.7);bs(new G.SphereGeometry(.035,8,6),0xffffff,x+.04,.88,.72);if(e==1)bs(new G.SphereGeometry(.02,8,6),0xffffff,x-.04,.75,.73)}
+ bs(new G.SphereGeometry(.07,8,6),0xff8fab,s*.42,.62,.56,[1,.6,.3]);
+ add(new G.BoxGeometry(.24,.05,.04),0x2a1a3a,x,[1.08,1.12,1.06,1.2][r],.62,[0,0,r==2?s*.35:r==1?-s*.15:0])}
+function mouthF(bs,add,a){const G=THREE,m=a.mouth||0,D=0x2a1a3a;
+ if(m==0)add(new G.TorusGeometry(.14,.025,6,12,3.14),D,0,.67,.71,[0,0,3.14]);
+ if(m==1){bs(new G.SphereGeometry(.16,12,8,0,6.3,1.57,1.57),0x7f1d1d,0,.66,.71,[1,.9,.4]);bs(new G.BoxGeometry(.22,.04,.03),0xffffff,0,.665,.74)}
+ if(m==2)bs(new G.SphereGeometry(.06,10,8),0x7f1d1d,0,.57,.71,[1,1.2,.4]);
+ if(m==3)add(new G.TorusGeometry(.1,.025,6,10,3.14),D,.07,.64,.71,[0,0,3.3])}
+/* ===== MODO CAMPO: exploração livre com combate em tempo real ===== */
+const FG=new THREE.Group();sc.add(FG);
+let F={},KY={},camF=0,lt=0;
+const BM=c=>new THREE.MeshBasicMaterial({color:c}),sl=new THREE.Mesh(new THREE.TorusGeometry(1.3,.08,6,20,3.14),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true}));sl.rotation.order='YXZ';sl.visible=false;sc.add(sl);
+const FH=`<div class="pn" style="position:fixed;top:8vh;left:3vw;min-width:240px"><div>Integridade <i class="bar h"><b id="hb"></b></i></div><div>Magia <i class="bar"><b id="mb"></b></i></div><div id="hx" class="dim"></div></div><div class="pn" id="fo" style="position:fixed;top:8vh;left:50%;transform:translateX(-50%);text-align:center"></div><div id="fq" class="pn" style="display:none;position:fixed;bottom:24vh;left:50%;transform:translateX(-50%);font-weight:700;color:var(--c)"></div><div id="fp" class="pn" style="display:none;position:fixed;bottom:10vh;left:50%;transform:translateX(-50%);width:min(680px,92vw)"></div><div class="dim" style="position:fixed;bottom:2vh;left:3vw">WASD/setas: mover · J/Espaço: golpe de varinha · K: magia · E: interagir</div><div style="position:fixed;bottom:1.5vh;right:3vw"><button class="b" id="fa">Golpe</button><button class="b" id="fm">Magia</button><button class="b" id="fe">Interagir</button></div><div id="fv" style="position:fixed;inset:0;pointer-events:none!important;opacity:0;background:radial-gradient(transparent 50%,#f43f5e99)"></div>`;
+function mkE2(boss,k){const keep=enemy;enemy=null;mkEnemy(boss,k);const g=enemy;enemy=keep;sc.remove(g);g.traverse(o=>{if(o.isLight)o.visible=false});g.scale.setScalar(boss?1.3:.7);FG.add(g);return g}
+function fx(x,z,c){const m=new THREE.Mesh(new THREE.TorusGeometry(.5,.06,6,20),new THREE.MeshBasicMaterial({color:c,transparent:true}));m.rotation.x=1.57;m.position.set(x,-1.2,z);FG.add(m);F.fx.push({m,l:.35})}
+function pick(x,z,k){const m=new THREE.Group();m.add(new THREE.Mesh(new THREE.OctahedronGeometry(.28),BM(k?0xf0abfc:0x22d3ee)),new THREE.Mesh(new THREE.TorusGeometry(.4,.02,6,16),BM(0xffffff)));m.position.set(x,-1.2,z);FG.add(m);F.pk.push({m,k,x,z})}
+function spawnEn(k,x,z){const g=mkE2(false,k),b=new THREE.Group(),f=new THREE.Mesh(new THREE.PlaneGeometry(.9,.08),BM(0xff3d6e));f.position.z=.01;b.add(new THREE.Mesh(new THREE.PlaneGeometry(.9,.1),BM(0x05050f)),f);FG.add(b);F.en.push({g,b,f,x,z,hx:x,hz:z,hp:60,max:60,hit:0,cd:0,at:0,kx:0,kz:0,s:Math.random()*6})}
+function hurtE(e,d,kx,kz){e.hp-=d;e.hit=.3;e.kx=kx*9;e.kz=kz*9;tone(240,.1);fx(e.x,e.z,0xffffff);if(e.hp<=0){FG.remove(e.g,e.b);F.en.splice(F.en.indexOf(e),1);F.xp+=10;for(let i=0;i<3;i++)pick(e.x+Math.random()-.5,e.z+Math.random()-.5,i%2);fx(e.x,e.z,0xff3d6e);tone(520,.2,'triangle')}}
+function hurtP(d,kx,kz){if(F.inv>0||F.dead)return;F.inv=.6;F.hp-=d;F.hurt=.3;F.kx=kx*9;F.kz=kz*9;tone(120,.25,'sawtooth');if(F.hp<=0){F.dead=1;dlg('<h2 class="r">Conexão perdida</h2><p><b>Clio-7:</b> O Oblívio te derrubou! Vou reiniciar você no ponto de partida. Suas evidências continuam salvas.</p>',()=>{F.hp=F.mp=100;F.x=0;F.z=13;F.dead=0;F.en.forEach(e=>{e.x=e.hx;e.z=e.hz});dlgX()},'Reiniciar (E)')}}
+function fAtk(){if(!M||M.s!='fld'||F.dlg||F.cd>0)return;F.cd=.45;F.sw=.22;tone(320,.1,'sawtooth');sl.material.color.set(P.av.tool);[...F.en].forEach(e=>{const dx=e.x-F.x,dz=e.z-F.z,d=Math.hypot(dx,dz)||.01;if(d<2.8&&(dx*Math.sin(F.f)+dz*Math.cos(F.f))/d>-.2)hurtE(e,30,dx/d,dz/d)})}
+function fMag(){if(!M||M.s!='fld'||F.dlg||F.mc>0||F.mp<20)return;F.mp-=20;F.mc=.5;F.ca=.3;tone(700,.2,'sine');const m=new THREE.Mesh(new THREE.SphereGeometry(.3,10,8),BM(new THREE.Color(P.av.tool))),s=Math.sin(F.f),c=Math.cos(F.f);m.position.set(F.x+s*1.2,-1,F.z+c*1.2);FG.add(m);F.pj.push({m,vx:s*16,vz:c*16,l:1})}
+function dlg(h,nx,lb){F.dlg=1;F.nx=nx||dlgX;const p=$('#fp');p.style.display='block';p.innerHTML=h+`<button class="b big" id="dn">${lb||'Continuar (E)'}</button>`;$('#dn').onclick=()=>{$('#dn').blur();F.nx()}}
+function dlgX(){F.dlg=0;$('#fp').style.display='none'}
+function talk(i){const L=LS[M.m.id],p=L[i],last=i==L.length-1;dlg(`<h3>Guardião do Códice · ${i+1}/${L.length}</h3><b>${p[0]}</b><p>${p[1]}</p>${p[2]||''}`,()=>{if(!last)return talk(i+1);if(!F.tk){F.tk=1;F.xp+=15;tone(880,.2,'sine')}dlgX()},last?'Entendi (E)':'Próxima (E)')}
+function fAct(){if(!M||M.s!='fld')return;if(F.dlg)return F.nx();const n=(x,z,r)=>Math.hypot(F.x-x,F.z-z)<r;
+ for(let i=0;i<orbs.length;i++){const o=orbs[i];if(!M.got.includes(i)&&n(o.position.x,o.position.z,2.4)){M.got.push(i);F.xp+=10;tone(880,.2,'sine');return dlg(`<h3>Evidência coletada (${M.got.length}/3)</h3><p>${M.m.ev[i]}</p>`)}}
+ if(n(F.np.x,F.np.z,3.4))return talk(0);
+ if(n(F.tm.x,F.tm.z,3.2)){if(M.got.length<3)return dlg('<h3>Terminal bloqueado</h3><p><b>Clio-7:</b> Colete as 3 evidências espalhadas pela simulação para liberar o terminal.</p>');F.dlg=0;battle()}}
+function buildField(m){F={x:0,z:13,f:3.14,hp:100,mp:100,cd:0,mc:0,sw:0,ca:0,hurt:0,inv:0,kx:0,kz:0,xp:0,fr:0,en:[],pk:[],pj:[],fx:[],pl:[],dlg:0,np:{x:-5,z:9},tm:{x:0,z:-14}};FG.clear();const G=THREE;
+ const fl=new G.Mesh(new G.CircleGeometry(19,48),BM(0x0d0f35));fl.rotation.x=-1.57;fl.position.y=-1.88;FG.add(fl);
+ [19,12,6].forEach((r,i)=>{const t=new G.Mesh(new G.TorusGeometry(r,.05,6,64),BM([0x22d3ee,0xa78bfa,0xf0abfc][i]));t.rotation.x=1.57;t.position.y=-1.85;FG.add(t)});
+ for(let i=0;i<9;i++){const a=i*.9+.3,r=7+i%3*3.2,x=Math.cos(a)*r,z=Math.sin(a)*r-2,p=mk(new G.CylinderGeometry(.5,.6,2.6,8),0x2a2f6a),c=new G.Mesh(new G.SphereGeometry(.22,8,6),BM(i%2?0xa78bfa:0x22d3ee));p.position.set(x,-.6,z);c.position.set(x,.9,z);FG.add(p,c);F.pl.push([x,z])}
+ orbs.forEach((o,i)=>{FG.add(o);o.userData.y0=-.8;o.position.set([-10,10,11][i],-.8,[-6,-9,3][i])});
+ const n=new G.Group();[[new G.ConeGeometry(.6,1.7,8),0x1d4ed8,0,.95],[new G.SphereGeometry(.38,12,10),0xfde68a,0,2.05],[new G.TorusGeometry(.5,.05,6,20),0xfde047,0,2.6],[new G.CylinderGeometry(.04,.04,2.3,6),0xcbd5e1,.75,1.15]].forEach(([g,c,x,y])=>{const q=mk(g,c);q.position.set(x,y,0);if(g.type=='TorusGeometry')q.rotation.x=1.57;n.add(q)});
+ const mq=new G.Mesh(new G.OctahedronGeometry(.25),BM(0xfde047));mq.position.y=3.3;n.add(mq,new G.Mesh(new G.SphereGeometry(.15,8,6),BM(0xfde047)));n.children[n.children.length-1].position.set(.75,2.35,0);n.userData.q=mq;n.position.set(F.np.x,-1.9,F.np.z);n.rotation.y=.5;FG.add(n);F.ng=n;
+ const t=new G.Group(),tr=new G.Mesh(new G.TorusGeometry(1.7,.14,8,36),BM(0xa78bfa)),td=new G.Mesh(new G.CircleGeometry(1.6,32),new G.MeshBasicMaterial({color:0xfb7185,transparent:true,opacity:.4,side:2})),bp=mk(new G.CylinderGeometry(2,2.2,.2,20),0x1b2060);tr.position.y=td.position.y=1.9;bp.position.y=.1;t.add(tr,td,bp);t.position.set(F.tm.x,-1.9,F.tm.z);FG.add(t);F.tr=tr;F.td=td;
+ if(m.boss){const b=mkE2(true,m.id);b.position.set(0,-.4,-17.5);FG.add(b);F.bs=b}
+ const k=+m.id.slice(-1)+3;for(let i=0;i<k;i++){const a=i*6.28/k+Math.random()*.5,r=7+Math.random()*7;spawnEn(m.id,Math.cos(a)*r,Math.sin(a)*r-4)}
+ for(let i=0;i<16;i++){const a=Math.random()*6.28,r=3+Math.random()*12;pick(Math.cos(a)*r,Math.sin(a)*r,i%3==0?1:0)}}
+function field(){M.s='fld';M.got=[];av.rotation.order='YXZ';buildField(M.m);$('#mis').innerHTML=FH}
+function fieldTick(dt,t){['cd','mc','sw','ca','hurt','inv'].forEach(k=>F[k]=Math.max(0,F[k]-dt));
+ if(!F.dlg){F.mp=Math.min(100,F.mp+14*dt);const ix=(KY.d||KY.arrowright?1:0)-(KY.a||KY.arrowleft?1:0),iz=(KY.s||KY.arrowdown?1:0)-(KY.w||KY.arrowup?1:0),l=Math.hypot(ix,iz)||1;F.mv=ix||iz;
+  if(F.mv){F.x+=ix/l*5.2*dt;F.z+=iz/l*5.2*dt;F.f=Math.atan2(ix,iz)}
+  F.x+=F.kx*dt;F.z+=F.kz*dt;F.kx*=.9;F.kz*=.9;
+  F.pl.forEach(c=>{const dx=F.x-c[0],dz=F.z-c[1],d=Math.hypot(dx,dz)||.01;if(d<1.1){F.x=c[0]+dx/d*1.1;F.z=c[1]+dz/d*1.1}});
+  const r=Math.hypot(F.x,F.z);if(r>17.5){F.x*=17.5/r;F.z*=17.5/r}
+  F.en.forEach(e=>{const dx=F.x-e.x,dz=F.z-e.z,d=Math.hypot(dx,dz)||.01;e.hit=Math.max(0,e.hit-dt);e.cd=Math.max(0,e.cd-dt);e.at=Math.max(0,e.at-dt);e.x+=e.kx*dt;e.z+=e.kz*dt;e.kx*=.88;e.kz*=.88;
+   if(d<10&&e.hit<=0&&!F.dead&&d>1.3){e.x+=dx/d*2.3*dt;e.z+=dz/d*2.3*dt}
+   if(d<1.6&&e.cd<=0&&!F.dead){e.cd=1.1;e.at=.4;hurtP(10,dx/d,dz/d)}
+   const g=e.g,E=g.userData.e,Mo=g.userData.m;g.position.set(e.x,-1.15+Math.sin(t*2+e.s)*.12,e.z);g.rotation.y=Math.atan2(dx,dz);g.userData.o.rotation.y=t*1.5;
+   if(E)E.forEach(x=>x.scale.y=e.hit>0?.2:e.at>0?1.5:.9);if(Mo)Mo.scale.y=e.hit>0?2.4:e.at>0?1.8:1;
+   e.b.position.set(e.x,.5,e.z);e.b.quaternion.copy(cam.quaternion);e.f.scale.x=Math.max(.001,e.hp/e.max);e.f.position.x=-(1-e.hp/e.max)*.45});
+  F.pj=F.pj.filter(p=>{p.m.position.x+=p.vx*dt;p.m.position.z+=p.vz*dt;p.l-=dt;const h=F.en.find(e=>Math.hypot(e.x-p.m.position.x,e.z-p.m.position.z)<1.1);if(h){hurtE(h,45,p.vx/16,p.vz/16);fx(p.m.position.x,p.m.position.z,0xf0abfc)}if(h||p.l<=0){FG.remove(p.m);return false}return true});
+  F.pk=F.pk.filter(p=>{p.m.rotation.y=t*3;p.m.position.y=-1.2+Math.sin(t*3+p.x)*.12;if(Math.hypot(F.x-p.x,F.z-p.z)<1.2){FG.remove(p.m);if(p.k)F.fr+=3;else F.xp+=5;tone(p.k?1100:900,.1,'sine');return false}return true});
+  F.fx=F.fx.filter(f=>{f.l-=dt;f.m.scale.setScalar(1+(.35-f.l)*8);f.m.material.opacity=Math.max(0,f.l/.35);if(f.l<=0){FG.remove(f.m);return false}return true})}
+ const sw=F.sw>0?1-F.sw/.22:0,sp=F.sw>0?Math.sin(sw*3.14):0;
+ av.scale.setScalar(.55);av.position.set(F.x+Math.sin(F.f)*sp*.5,-1.05+(F.mv&&!F.dlg?Math.abs(Math.sin(t*12))*.1:0)+Math.sin(t*2)*.02,F.z+Math.cos(F.f)*sp*.5);
+ av.rotation.set(F.ca>0?-.25:sp*.3,F.f+(F.sw>0?(sw-.5)*2.2:0),F.hurt>0?Math.sin(t*60)*.2:0);
+ sl.visible=F.sw>0;if(sl.visible){sl.position.set(F.x+Math.sin(F.f)*.9,-.9,F.z+Math.cos(F.f)*.9);sl.rotation.set(1.57,F.f,0);sl.material.opacity=F.sw/.22}
+ cam.position.x+=(F.x-cam.position.x)*.1;cam.position.z+=(F.z+10-cam.position.z)*.1;cam.position.y=8;cam.lookAt(cam.position.x,-1.2,cam.position.z-10);
+ F.ng.userData.q.position.y=3.3+Math.sin(t*3)*.2;F.ng.userData.q.rotation.y=t*2;F.tr.rotation.z=t;if(F.bs)F.bs.position.y=-.4+Math.sin(t*1.5)*.15;
+ const n=M.got.length,d=(x,z)=>Math.hypot(F.x-x,F.z-z),pr=orbs.some((o,i)=>!M.got.includes(i)&&d(o.position.x,o.position.z)<2.4)?'E · Analisar evidência':d(F.np.x,F.np.z)<3.4?'E · Falar com o Guardião do Códice':d(F.tm.x,F.tm.z)<3.2?(n<3?'E · Terminal bloqueado':'E · Iniciar restauração'):'';
+ F.td.material.color.set(n>=3?0x22d3ee:0xfb7185);
+ $('#hb').style.width=F.hp+'%';$('#mb').style.width=F.mp+'%';$('#hx').textContent=`◆ ${P.fr} (+${F.fr}) · XP +${F.xp} · Glitches: ${F.en.length}`;$('#fo').textContent=n<3?`${M.m.n}: colete evidências (${n}/3)`:'Evidências completas! Vá ao terminal brilhante e pressione E';$('#fq').textContent=pr;$('#fq').style.display=pr&&!F.dlg?'block':'none';$('#fv').style.opacity=F.hurt/.3}
+addEventListener('keydown',e=>{const k=e.key.toLowerCase();KY[k]=1;if(mode=='mis'&&M&&M.s=='fld'){if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k))e.preventDefault();if(e.repeat)return;if(k=='j'||k==' ')fAtk();if(k=='k')fMag();if(k=='e')fAct()}});
+addEventListener('keyup',e=>KY[e.key.toLowerCase()]=0);
+$('#mis').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!M||M.s!='fld')return;const f={fa:fAtk,fm:fMag,fe:fAct}[b.id];if(f){b.blur();f()}});
+net();
+buildAv();requestAnimationFrame(loop);
+</script></body></html>
